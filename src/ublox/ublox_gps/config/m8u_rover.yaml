@@ -20,7 +20,7 @@ dynamic_model: 0    # Airborne < 2G, 2D fix not supported (3D only),
 fix_mode: 3 
 enable_ppp: true           # Not supported by C94-M8P
 dr_limit: 1
-
+tmode3: 0
 uart1:
   baudrate: 115200           # C94-M8P specific
   in: 16                    # RTCM 3
