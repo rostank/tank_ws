@@ -1,0 +1,18 @@
+%%% Info about the project %%%
+
+Push to github:
+git add .
+git commit -m "Some Message"
+git push ssh://git@ssh.github.com:443/rostank/tank_ws.git master
+
+
+Run ROS
+roscore
+
+Run Packages
+cd tank_ws
+source devel/setup.bash
+
+
+Run GPS
+roslaunch ublox_gps ublox_device.launch node_name:=node param_file_name:=navilock
