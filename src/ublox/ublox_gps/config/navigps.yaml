@@ -1,4 +1,4 @@
-# Configuration Settings for C94-M8P device
+# Configuration Settings for Navilock USB GPS device
 
 debug: 1                    # Range 0-4 (0 means no debug statements will print)
 
