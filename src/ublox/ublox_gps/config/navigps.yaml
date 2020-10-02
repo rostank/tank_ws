@@ -9,19 +9,19 @@ save:
 
 device: /dev/ttyACM0
 frame_id: gps
-dynamic_model: portable   # Velocity restricted to 0 m/s. Zero dynamics 
-                            # assumed.
+dynamic_model: portable     # MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium
+
 fix_mode: auto
 dr_limit: 0
-enable_ppp: false           # Not supported by C94-M8P
+enable_ppp: false
 
 rate: 4                     # Measurement rate in Hz
 nav_rate: 4                 # in number of measurement cycles
 
 uart1:
-  baudrate: 19200           # C94-M8P specific
-  in: 0                     # No UART in for base
-  out: 32                   # RTCM 3
+  baudrate: 19200           
+  in: 0 
+  out: 3
 
 # TMODE3 Config
 tmode3: 1                   # Survey-In Mode
@@ -56,9 +56,9 @@ dat:
 
 # GNSS Config
 gnss:
-  glonass: true             # Supported by C94-M8P
-  beidou: false             # Supported by C94-M8P
-  qzss: false               # Supported by C94-M8P
+  glonass: true  
+  beidou: false
+  qzss: false 
   galileo: true
 
 inf: 
