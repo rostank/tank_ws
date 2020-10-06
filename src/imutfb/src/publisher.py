@@ -78,7 +78,7 @@ def talker():
     rospy.init_node('IMU_Brick_pub', anonymous=True)    # Name of the ROS Node
     pub1 = rospy.Publisher('IMU_Brick_All', imu_message, queue_size=1)   # Name of the published ROS topic
     pub2 = rospy.Publisher('IMU_Brick_Std', Imu, queue_size=1)   # Name of the published ROS topic
-    r = rospy.Rate(10)  #10hz
+    r = rospy.Rate(50)  #10hz
     
     msg = imu_message()
     

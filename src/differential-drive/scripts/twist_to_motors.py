@@ -37,10 +37,11 @@ class TwistToMotors():
         nodename = rospy.get_name()
         rospy.loginfo("%s started" % nodename)
     
-        self.w = rospy.get_param("~base_width", 0.2)
+        self.w = rospy.get_param("~base_width", 0.47)
     
         self.pub_lmotor = rospy.Publisher('lwheel_vtarget', Float32, queue_size=10)
         self.pub_rmotor = rospy.Publisher('rwheel_vtarget', Float32, queue_size=10)
+        self.pub_arm = rospy.Publisher('arm_turn', Float32, queue_size=10)
         rospy.Subscriber('cmd_vel', Twist, self.twistCallback)
     
     
@@ -48,7 +49,7 @@ class TwistToMotors():
         self.timeout_ticks = rospy.get_param("~timeout_ticks", 2)
         self.left = 0
         self.right = 0
-        
+        self.arm = 0
     #############################################################
     def spin(self):
     #############################################################
@@ -79,7 +80,8 @@ class TwistToMotors():
                 
         self.pub_lmotor.publish(self.left)
         self.pub_rmotor.publish(self.right)
-            
+        self.pub_arm.publish(self.arm)
+
         self.ticks_since_target += 1
 
     #############################################################
@@ -90,6 +92,7 @@ class TwistToMotors():
         self.dx = msg.linear.x
         self.dr = msg.angular.z
         self.dy = msg.linear.y
+        self.arm = msg.angular.y
     
 #############################################################
 #############################################################

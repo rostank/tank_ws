@@ -21,8 +21,8 @@ locks:
   timeout : 0.0
   priority: 200
 -
-  name    : joystick 
-  topic   : joy_priority
-  timeout : 0.0
+  name    : navigation 
+  topic   : au_priority
+  timeout : 3.0
   priority: 100
 

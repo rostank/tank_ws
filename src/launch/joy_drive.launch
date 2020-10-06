@@ -1,0 +1,18 @@
+<launch>
+
+<!-- Running Differential drive -->
+  <node name="differential_drive" pkg="differential_drive" type="twist_to_motors.py" />
+
+<!-- Running LED indicator -->
+  <node name="led_listener" pkg="led_control" type="led_listener.py" />
+
+<!-- Running Twist selector -->
+  <node name="twist_select" pkg="twist_select" type="twist_select.py" />  
+
+<!-- Running Arduino serial -->
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+  <param name="port" value="/dev/ttyUSB0"/>
+  <param name="baud" value="115200"/>
+  </node>
+
+</launch>
