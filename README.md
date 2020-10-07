@@ -19,8 +19,11 @@ source devel/setup.bash
 
 ### If running multiple machines:
 cd tank_ws
+
 export ROS_MASTER_URI=http://10.122.12.106:11311
+
 export ROS_IP=10.122.12.106
+
 source devel/setup.bash
 
 
@@ -32,7 +35,7 @@ roslaunch ublox_gps ublox_device.launch node_name:=gps param_file_name:=navigps
 roslaunch zed_wrapper zed2.launch
 
 ### Run IMU
-rosrun imutfb publisher.py
+rosrun imutfb imumag.py
  
 ### Run Diff_drive
 rosrun differential_drive twist_to_motors.py
@@ -49,8 +52,20 @@ rostopic pub /joy_priority std_msgs/Bool true
 
 rostopic pub -r 5 /twist_au geometry_msgs/Twist '{linear:  {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.1,y: 0.2,z: 0.3}}'
 
+### led indicator
+rosrun led_control led_listener.py
+
 ### Run Arduino
 rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
 
 ### Send drive signal to Arduino
 rostopic pub -r 1 /lwheel_vtarget std_msgs/Float32 '{data: 0.0}'
+
+### Launch for joystick control
+#### Differential_drive
+#### led_listener
+#### twist_mux
+#### serial_node
+roslaunch joy_drive.launch
+
+

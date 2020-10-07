@@ -191,13 +191,13 @@ void TinkerforgeSensors::publishImuMessage(SensorDevice *sensor)
       imu_v2_get_linear_acceleration((IMUV2*)sensor->getDev(), &acc_x, &acc_y, &acc_z);
       imu_v2_get_angular_velocity((IMUV2*)sensor->getDev(), &ang_x, &ang_y, &ang_z);
 
-      ang_x = ang_x * 16;
-      ang_y = ang_y * 16;
-      ang_z = ang_z * 16;
+      ang_x = ang_x / 16;
+      ang_y = ang_y / 16;
+      ang_z = ang_z / 16;
 
-      acc_x = acc_x * 100;
-      acc_y = acc_y * 100;
-      acc_z = acc_z * 100;
+      acc_x = acc_x / 100;
+      acc_y = acc_y / 100;
+      acc_z = acc_z / 100;
     }
     else
     {

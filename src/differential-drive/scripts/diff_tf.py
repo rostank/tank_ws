@@ -55,6 +55,7 @@ import rospy
 import roslib
 roslib.load_manifest('differential_drive')
 from math import sin, cos, pi
+import numpy as np
 
 from geometry_msgs.msg import Quaternion
 from geometry_msgs.msg import Twist
@@ -157,6 +158,24 @@ class DiffTf:
                 self.y = self.y + ( sin( self.th ) * x + cos( self.th ) * y )
             if( th != 0):
                 self.th = self.th + th
+
+            # Set covariances
+            if (d == 0):
+                cov = \
+                ([1e-6, 0, 0, 0, 0, 0,\
+                0, 1e-6, 0, 0, 0, 0,\
+                0, 0, 1e+6, 0, 0, 0,\
+                0, 0, 0, 1e+6, 0, 0,\
+                0, 0, 0, 0, 1e+6, 0,\
+                0, 0, 0, 0, 0, 1e-6])
+            else:
+                cov = \
+                ([1e-1, 0, 0, 0, 0, 0,\
+                0, 1e-1, 0, 0, 0, 0,\
+                0, 0, 1e+6, 0, 0, 0,\
+                0, 0, 0, 1e+6, 0, 0,\
+                0, 0, 0, 0, 1e+6, 0,\
+                0, 0, 0, 0, 0, 1e+1])
                 
             # publish the odom information
             quaternion = Quaternion()
@@ -179,10 +198,12 @@ class DiffTf:
             odom.pose.pose.position.y = self.y
             odom.pose.pose.position.z = 0
             odom.pose.pose.orientation = quaternion
+            odom.pose.covariance = cov
             odom.child_frame_id = self.base_frame_id
             odom.twist.twist.linear.x = self.dx
             odom.twist.twist.linear.y = 0
             odom.twist.twist.angular.z = self.dr
+            odom.twist.covariance = cov
             self.odomPub.publish(odom)
             
             

@@ -3,6 +3,9 @@
 <!-- Running Differential drive -->
   <node name="differential_drive" pkg="differential_drive" type="twist_to_motors.py" />
 
+<!-- Running Diff odom -->
+  <node name="diff_odom" pkg="differential_drive" type="diff_tf.py" />
+
 <!-- Running LED indicator -->
   <node name="led_listener" pkg="led_control" type="led_listener.py" />
 
