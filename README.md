@@ -68,4 +68,5 @@ rostopic pub -r 1 /lwheel_vtarget std_msgs/Float32 '{data: 0.0}'
 #### serial_node
 roslaunch joy_drive.launch
 
-
+### Run Sensor Fusion
+roslaunch robot_localization ekf_double.launch

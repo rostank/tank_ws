@@ -204,3 +204,13 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(tf_imu src/tf_imu.cpp)
+add_executable(tf_enc src/tf_enc.cpp)
+add_executable(tf_zed src/tf_zed.cpp)
+add_executable(imu_transformer src/imu_transformer.cpp)
+add_executable(tf_odom_enc src/tf_odom_enc.cpp)
+target_link_libraries(tf_imu ${catkin_LIBRARIES})
+target_link_libraries(tf_enc ${catkin_LIBRARIES})
+target_link_libraries(tf_zed ${catkin_LIBRARIES})
+target_link_libraries(imu_transformer ${catkin_LIBRARIES})
+target_link_libraries(tf_odom_enc ${catkin_LIBRARIES})

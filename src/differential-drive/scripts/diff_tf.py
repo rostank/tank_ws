@@ -75,12 +75,12 @@ class DiffTf:
         rospy.loginfo("-I- %s started" % self.nodename)
         
         #### parameters #######
-        self.rate = rospy.get_param('~rate',10.0)  # the rate at which to publish the transform
-        self.ticks_meter = float(rospy.get_param('ticks_meter', 800))  # The number of wheel encoder ticks per meter of travel
+        self.rate = rospy.get_param('~rate',20.0)  # the rate at which to publish the transform
+        self.ticks_meter = float(rospy.get_param('ticks_meter', 748.487))  # The number of wheel encoder ticks per meter of travel
         self.base_width = float(rospy.get_param('~base_width', 0.47)) # The wheel base width in meters
         
-        self.base_frame_id = rospy.get_param('~base_frame_id','base_link') # the name of the base frame of the robot
-        self.odom_frame_id = rospy.get_param('~odom_frame_id', 'odom') # the name of the odometry reference frame
+        self.base_frame_id = rospy.get_param('~base_frame_id','base_enc') # the name of the base frame of the robot
+        self.odom_frame_id = rospy.get_param('~odom_frame_id', 'odom_enc') # the name of the odometry reference frame
         
         self.encoder_min = rospy.get_param('encoder_min', -32768)
         self.encoder_max = rospy.get_param('encoder_max', 32768)
@@ -160,8 +160,8 @@ class DiffTf:
                 self.th = self.th + th
 
             # Set covariances
-            if (d == 0):
-                cov = \
+            if (self.dx == 0):
+                covOdom = \
                 ([1e-6, 0, 0, 0, 0, 0,\
                 0, 1e-6, 0, 0, 0, 0,\
                 0, 0, 1e+6, 0, 0, 0,\
@@ -169,27 +169,44 @@ class DiffTf:
                 0, 0, 0, 0, 1e+6, 0,\
                 0, 0, 0, 0, 0, 1e-6])
             else:
-                cov = \
-                ([1e-1, 0, 0, 0, 0, 0,\
-                0, 1e-1, 0, 0, 0, 0,\
+                covOdom = \
+                ([4e-3*d, 0, 0, 0, 0, 0,\
+                0, 4e-3*d, 0, 0, 0, 0,\
                 0, 0, 1e+6, 0, 0, 0,\
                 0, 0, 0, 1e+6, 0, 0,\
                 0, 0, 0, 0, 1e+6, 0,\
                 0, 0, 0, 0, 0, 1e+1])
                 
+            if (self.dx == 0):
+                covTwist = \
+                ([1e-6, 0, 0, 0, 0, 0,\
+                0, 1e-6, 0, 0, 0, 0,\
+                0, 0, 1e+6, 0, 0, 0,\
+                0, 0, 0, 1e+6, 0, 0,\
+                0, 0, 0, 0, 1e+6, 0,\
+                0, 0, 0, 0, 0, 1e-6])
+            else:
+                covTwist = \
+                ([4e-3, 0, 0, 0, 0, 0,\
+                0, 4e-3, 0, 0, 0, 0,\
+                0, 0, 1e+6, 0, 0, 0,\
+                0, 0, 0, 1e+6, 0, 0,\
+                0, 0, 0, 0, 1e+6, 0,\
+                0, 0, 0, 0, 0, 1e+1])
+
             # publish the odom information
             quaternion = Quaternion()
             quaternion.x = 0.0
             quaternion.y = 0.0
             quaternion.z = sin( self.th / 2 )
             quaternion.w = cos( self.th / 2 )
-            self.odomBroadcaster.sendTransform(
-                (self.x, self.y, 0),
-                (quaternion.x, quaternion.y, quaternion.z, quaternion.w),
-                rospy.Time.now(),
-                self.base_frame_id,
-                self.odom_frame_id
-                )
+            #self.odomBroadcaster.sendTransform(
+            #    (self.x, self.y, 0),
+            #    (quaternion.x, quaternion.y, quaternion.z, quaternion.w),
+            #    rospy.Time.now(),
+            #    self.base_frame_id,
+            #    self.odom_frame_id
+            #    )
             
             odom = Odometry()
             odom.header.stamp = now
@@ -198,12 +215,12 @@ class DiffTf:
             odom.pose.pose.position.y = self.y
             odom.pose.pose.position.z = 0
             odom.pose.pose.orientation = quaternion
-            odom.pose.covariance = cov
+            odom.pose.covariance = covOdom
             odom.child_frame_id = self.base_frame_id
             odom.twist.twist.linear.x = self.dx
             odom.twist.twist.linear.y = 0
             odom.twist.twist.angular.z = self.dr
-            odom.twist.covariance = cov
+            odom.twist.covariance = covTwist
             self.odomPub.publish(odom)
             
             

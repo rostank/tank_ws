@@ -3,6 +3,7 @@ import rospy
 from imutfb.msg import imu_message
 from sensor_msgs.msg import Imu, MagneticField, Temperature
 from collections import namedtuple
+import time
 
 # Download with "sudo apt install python3-tinkerforge"
 from tinkerforge.ip_connection import IPConnection
@@ -13,22 +14,49 @@ HOST = "localhost"
 PORT = 4223
 UID = "6fXE6x"
 
+class struacc:
+    def __init__(self):
+        self.x = []
+        self.y = []
+        self.z = []
+accoffset = struacc()
+
+class struave:
+    def __init__(self):
+        self.x = []
+        self.y = []
+        self.z = []
+aveoffset = struave()
+
+def accelerationoffset():
+    for x in range(20):
+        accoffset.x.append(imu.get_all_data().linear_acceleration[0]/100.0)
+        accoffset.y.append(imu.get_all_data().linear_acceleration[1]/100.0)
+        accoffset.z.append(imu.get_all_data().linear_acceleration[2]/100.0)
+        time.sleep(0.05)
+    global aveoffset
+    aveoffset.x = round(sum(accoffset.x)/len(accoffset.x),3)
+    aveoffset.y = round(sum(accoffset.y)/len(accoffset.y),3)
+    aveoffset.z = round(sum(accoffset.z)/len(accoffset.z),3)
+    
+
 def StdDataHandler():
+    global aveoffset
     msg = Imu()
     msg.header.stamp = rospy.get_rostime()
     msg.header.frame_id = "base_imu"
 
-    #msg.linear_acceleration.x = imu.get_all_data().linear_acceleration[0]/100.0
-    #msg.linear_acceleration.y = imu.get_all_data().linear_acceleration[1]/100.0
-    #msg.linear_acceleration.z = imu.get_all_data().linear_acceleration[2]/100.0
+    msg.linear_acceleration.x = imu.get_all_data().linear_acceleration[0]/100.0-aveoffset.x
+    msg.linear_acceleration.y = imu.get_all_data().linear_acceleration[1]/100.0-aveoffset.y
+    msg.linear_acceleration.z = (imu.get_all_data().linear_acceleration[2]/100.0)-aveoffset.z
 
     msg.angular_velocity.x = imu.get_all_data().angular_velocity[0]/16
     msg.angular_velocity.y = imu.get_all_data().angular_velocity[1]/16
     msg.angular_velocity.z = imu.get_all_data().angular_velocity[2]/16
 
-    msg.linear_acceleration.x = imu.get_all_data().acceleration[0]/100.0
-    msg.linear_acceleration.y = imu.get_all_data().acceleration[1]/100.0
-    msg.linear_acceleration.z = imu.get_all_data().acceleration[2]/100.0
+    #msg.linear_acceleration.x = imu.get_all_data().acceleration[0]/100.0
+    #msg.linear_acceleration.y = imu.get_all_data().acceleration[1]/100.0
+    #msg.linear_acceleration.z = imu.get_all_data().acceleration[2]/100.0
 
     msg.orientation.w = imu.get_all_data().quaternion[0]/16383.0
     msg.orientation.x = imu.get_all_data().quaternion[1]/16383.0
@@ -87,7 +115,12 @@ def talker():
     r = rospy.Rate(20)  #10hz
     
     msg = imu_message()
-    
+
+    accelerationoffset()
+    rospy.loginfo("Averaged x-direction linear velocity offset: %s" % aveoffset.x)
+    rospy.loginfo("Averaged y-direction linear velocity offset: %s" % aveoffset.y)
+    rospy.loginfo("Averaged z-direction linear velocity offset: %s" % aveoffset.z)
+
     while not rospy.is_shutdown():
         msg1 = StdDataHandler()
         msg2 = MagDataHandler()
@@ -104,7 +137,7 @@ if __name__ == '__main__':
     ipcon = IPConnection() # Create IP connection
     imu = BrickIMUV2(UID, ipcon) # Create device object
     ipcon.connect(HOST, PORT) # Connect to brickd
-
     try:
         talker()
-    except rospy.ROSInterruptException: pass
+    except rospy.ROSInterruptException:
+        pass
