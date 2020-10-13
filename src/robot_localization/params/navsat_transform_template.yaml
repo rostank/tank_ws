@@ -11,7 +11,7 @@ delay: 3.0
 
 # If your IMU does not account for magnetic declination, enter the value for your location here. If you don't know it,
 # see http://www.ngdc.noaa.gov/geomag-web/ (make sure to convert the value to radians). This parameter is mandatory.
-magnetic_declination_radians: 0
+magnetic_declination_radians: 0.062
 
 # Your IMU's yaw, once the magentic_declination_radians value is added to it, should report 0 when facing east. If it
 # doesn't, enter the offset here. Defaults to 0.
@@ -21,7 +21,7 @@ yaw_offset: 0.0
 zero_altitude: false
 
 # If this is true, the transform world_frame->utm transform is broadcast for use by other nodes. Defaults to false.
-broadcast_utm_transform: false
+broadcast_utm_transform: true
 
 # If this is true, the utm->world_frame transform will be published instead of the world_frame->utm transform. 
 # Note that broadcast_utm_transform still has to be enabled. Defaults to false.

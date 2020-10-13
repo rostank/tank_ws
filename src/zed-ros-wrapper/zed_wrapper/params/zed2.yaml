@@ -18,6 +18,6 @@ sensors:
 object_detection:
     od_enabled:                 false           # True to enable Object Detection [only ZED 2]
     confidence_threshold:       50              # Minimum value of the detection confidence of an object [0,100]
-    object_tracking_enabled:    true            # Enable/disable the tracking of the detected objects
+    object_tracking_enabled:    false            # Enable/disable the tracking of the detected objects
     people_detection:           false           # Enable/disable the detection of persons
     vehicle_detection:          false           # Enable/disable the detection of vehicles

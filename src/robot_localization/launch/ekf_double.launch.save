@@ -2,12 +2,14 @@
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_rel" clear_params="true">
     <rosparam command="load" file="$(find robot_localization)/params/ekf_relative.yaml" />
 
-    <!--  Placeholder for output topic remapping -->
-    <remap from="odometry/filtered" to="odometry/relative/filtered"/>
-    <remap from="accel/filtered" to="accel/relative/filtered"/>
+    <!--  Placeholder for output topic remapping
+    <remap from="odometry/relative/filtered" to=""/>
+    <remap from="accel/relative/filtered" to=""/>
+    -->
 
   </node>
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_abs" clear_params="true">
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_rel" clear_params="true">
+    <rosparam command="load" file="$(find robot_localization)/params/ekf_relative.yaml" />
     <rosparam command="load" file="$(find robot_localization)/params/ekf_absolute.yaml" />
 
     <!--  Placeholder for output topic remapping

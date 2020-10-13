@@ -2,7 +2,7 @@
 #include <tf/transform_broadcaster.h>
 
 int main(int argc, char** argv){
-  ros::init(argc, argv, "tf_zed");
+  ros::init(argc, argv, "tf_odom_zed");
   ros::NodeHandle n;
 
   ros::Rate r(100);
@@ -13,7 +13,7 @@ int main(int argc, char** argv){
     broadcaster.sendTransform(
       tf::StampedTransform(
         tf::Transform(tf::Quaternion(0, 0, 0, 1), tf::Vector3(0.205, 0.0, 0.209)),
-        ros::Time::now(),"base_link", "base_zed"));
+        ros::Time::now(),"odom", "odom_zed"));
     r.sleep();
   }
 }
