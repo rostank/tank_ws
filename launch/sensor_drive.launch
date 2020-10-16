@@ -1,0 +1,36 @@
+<launch>
+
+  <include file="joy_drive.launch" />
+  <!--
+  <node name="tf_enc" pkg="transforms" type="tf_enc" />
+  <node name="tf_imu" pkg="transforms" type="tf_imu" />
+  <node name="tf_zed" pkg="transforms" type="tf_zed" />
+  <node name="tf_odom_enc" pkg="transforms" type="tf_odom_enc" />
+  <node name="tf_map_zed" pkg="transforms" type="tf_map_zed" />
+  <node name="tf_odom_zed" pkg="transforms" type="tf_odom_zed" />
+  -->
+
+  <!-- TRANSFORMS -->
+  <node pkg="tf" type="static_transform_publisher" name="imu_tf" args="0 0 0.1427 -0.007652281432812 0.003060912573125 0 0.999966036124774 base_link base_imu 10" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_tf" args="0.21 0 0 0 0 0 1 base_link base_enc 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_tf" args="0.205 0 0.209 0 0 0 1 base_link base_zed 10" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_odom_tf" args="0.21 0 0 0 0 0 1 odom odom_enc 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_odom_tf" args="0.205 0 0.209 0 0 0 1 odom odom_zed 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_map_tf" args="0.205 0 0.209 0 0 0 1 map map_zed 10" />
+
+  <!-- ZED 2 -->
+  <include file="$(find zed_wrapper)/launch/zed2.launch" />
+  
+  <!-- GPS -->
+  <include file="$(find ublox_gps)/launch/ublox_device.launch" >
+    <arg name="node_name" value="gps"/>
+    <arg name="param_file_name" value="navigps"/>
+  </include>
+
+  <!-- IMU -->
+  <node name="imu" pkg="imutfb" type="imumag.py" />
+
+  <!-- SENSOR FUSION -->
+  <include file="$(find robot_localization)/launch/dual_ekf_navsat_example.launch" />
+
+</launch> 
