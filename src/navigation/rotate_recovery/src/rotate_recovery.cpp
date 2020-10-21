@@ -107,7 +107,7 @@ void RotateRecovery::runBehavior()
 
   ros::Rate r(frequency_);
   ros::NodeHandle n;
-  ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 10);
+  ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("twist_au", 10);
 
   geometry_msgs::PoseStamped global_pose;
   local_costmap_->getRobotPose(global_pose);

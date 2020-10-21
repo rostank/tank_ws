@@ -25,7 +25,7 @@ import time
 # Pin Definitions:
 led_pin_1 = 12
 led_pin_2 = 13
-but_pin = 18
+but_pin = 36
 
 # blink LED 2 quickly 5 times when button pressed
 def blink(channel):
