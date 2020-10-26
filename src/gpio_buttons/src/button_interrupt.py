@@ -33,13 +33,12 @@ but_pin = 36
 def kill(channel):
     rospy.logwarn("Killing Nodes")
     call(["rosnode", "kill", "-a"])
-    rospy.sleep(2)
+    rospy.sleep(5)
     setvtarget()
-    rospy.sleep(1)
-    rospy.logwarn("Killing ROS")
-    call(["killall", "roscore"])
-    call(["killall", "-9", "rosmaster"])
-    GPIO.cleanup()
+    #rospy.sleep(3)
+    #rospy.logwarn("Killing ROS")
+    #call(["killall", "roscore"])
+    #call(["killall", "-9", "rosmaster"])
 
 def setvtarget():
     rospy.logwarn("Setting velocities to 0")
@@ -49,15 +48,15 @@ def setvtarget():
     pub_rmotor = rospy.Publisher('rwheel_vtarget', Float32, queue_size=10)
     pub_arm = rospy.Publisher('arm_turn', Float32, queue_size=10)
 
-    #rate = rospy.Rate(10)
-    #i = 1
-    #while i < 30:
-    pub_lmotor.publish(0)
-    pub_rmotor.publish(0)
-    pub_arm.publish(0)
+    rate = rospy.Rate(10)
+    i = 1
+    while i < 30:
+        pub_lmotor.publish(0)
+        pub_rmotor.publish(0)
+        pub_arm.publish(0)
     #rospy.logwarn(i)
-    #    i =+ 1
-    #    rate.sleep()
+        i =+ 1
+        rate.sleep()
 
     #call(["rostopic", "pub", "-1", "/lwheel_vtarget", "std_msgs/Float32", "'{data: 0.0}'"])
     #call(["rostopic", "pub", "-1", "/rwheel_vtarget", "std_msgs/Float32", "'{data: 0.0}'"])
