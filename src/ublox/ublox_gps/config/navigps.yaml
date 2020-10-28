@@ -8,15 +8,15 @@ save:
   device: 4                 # Save to EEPROM
 
 device: /dev/ttyACM0
-frame_id: gps
+frame_id: base_gps
 dynamic_model: portable     # MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium
 
 fix_mode: auto
 dr_limit: 0
 enable_ppp: false
 
-rate: 4                     # Measurement rate in Hz
-nav_rate: 4                 # in number of measurement cycles
+rate: 10                     # Measurement rate in Hz
+nav_rate: 10                 # in number of measurement cycles
 
 uart1:
   baudrate: 19200           
@@ -62,11 +62,11 @@ gnss:
   galileo: true
 
 inf: 
-  all: true                   # Whether to display all INF messages in console
+  all: false                   # Whether to display all INF messages in console
 
 # Enable u-blox message publishers
 publish:
-  all: true
+  all: false
   aid:
     hui: false
   nav:

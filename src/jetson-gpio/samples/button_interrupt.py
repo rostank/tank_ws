@@ -23,7 +23,7 @@ import RPi.GPIO as GPIO
 import time
 
 # Pin Definitions:
-led_pin_1 = 12
+led_pin_1 = 11
 led_pin_2 = 13
 but_pin = 36
 
@@ -35,6 +35,7 @@ def blink(channel):
         time.sleep(0.5)
         GPIO.output(led_pin_2, GPIO.LOW)
         time.sleep(0.5)
+    
 
 def main():
     # Pin Setup:
