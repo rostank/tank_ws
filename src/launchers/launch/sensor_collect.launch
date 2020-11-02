@@ -11,13 +11,13 @@
   -->
 
   <!-- TRANSFORMS -->
-  <node pkg="tf" type="static_transform_publisher" name="imu_tf" args="0 0 0.1427 -0.007652281432812 0.003060912573125 0 0.999966036124774 base_link base_imu 10" />
-  <node pkg="tf" type="static_transform_publisher" name="enc_tf" args="0.21 0 0 0 0 0 1 base_link base_enc 10" />
-  <node pkg="tf" type="static_transform_publisher" name="zed_tf" args="0.205 0 0.209 0 0 0 1 base_link base_zed 10" />
-  <node pkg="tf" type="static_transform_publisher" name="enc_odom_tf" args="0.21 0 0 0 0 0 1 odom odom_enc 10" />
-  <node pkg="tf" type="static_transform_publisher" name="zed_odom_tf" args="0.205 0 0.209 0 0 0 1 odom odom_zed 10" />
-  <node pkg="tf" type="static_transform_publisher" name="zed_map_tf" args="0.205 0 0.209 0 0 0 1 map map_zed 10" />
-  <node pkg="tf" type="static_transform_publisher" name="gps_tf" args="0.135 0 0.155 0 0 0 1 base_link base_gps 10" />
+  <node pkg="tf" type="static_transform_publisher" name="imu_tf" args="0 0 0.1427 -0.007652281432812 0.003060912573125 0 0.999966036124774 base_link base_imu 100" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_tf" args="0.21 0 0 0 0 0 1 base_link base_enc 100" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_tf" args="0.205 0 0.209 0 0 0 1 base_link base_zed 100" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_odom_tf" args="0.21 0 0 0 0 0 1 odom odom_enc 100" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_odom_tf" args="0.205 0 0.209 0 0 0 1 odom odom_zed 100" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_map_tf" args="0.205 0 0.209 0 0 0 1 map map_zed 100" />
+  <node pkg="tf" type="static_transform_publisher" name="gps_tf" args="0.135 0 0.155 0 0 0 1 base_link base_gps 100" />
 
   <!-- ZED 2 -->
   <include file="$(find zed_wrapper)/launch/zed2.launch" />

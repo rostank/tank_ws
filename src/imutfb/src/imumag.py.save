@@ -61,7 +61,7 @@ def StdDataHandler():
     msg.orientation.w = imu.get_all_data().quaternion[0]/16383.0
     msg.orientation.x = imu.get_all_data().quaternion[1]/16383.0
     msg.orientation.y = imu.get_all_data().quaternion[2]/16383.0
-    msg.orientation.z = (imu.get_all_data().quaternion[3]/16383.0)
+    msg.orientation.z = imu.get_all_data().quaternion[3]/16383.0
 
     msg.orientation_covariance = [0.002,0.,0.,0.,0.002,0.,0.,0.,0.002]
 
@@ -143,7 +143,7 @@ def talker():
     pub3 = rospy.Publisher('imu/temperature', Temperature, queue_size=1)
     pub4 = rospy.Publisher('imu/gravity', MagneticField, queue_size=1)
     pub5 = rospy.Publisher('imu/acceleration', Imu, queue_size=1)
-    r = rospy.Rate(20)  #10hz
+    r = rospy.Rate(100)  #10hz
     
     msg = imu_message()
 

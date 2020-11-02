@@ -15,8 +15,8 @@ fix_mode: auto
 dr_limit: 0
 enable_ppp: false
 
-rate: 10                     # Measurement rate in Hz
-nav_rate: 10                 # in number of measurement cycles
+rate: 20                     # Measurement rate in Hz
+nav_rate: 2               # in number of measurement cycles
 
 uart1:
   baudrate: 19200           

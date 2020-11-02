@@ -6,8 +6,8 @@ plugins:
 obstacle_range: 2.5
 raytrace_range: 3.0
 
-#max_obstacle_height: 1.0
-#min_obstacle_height: 0.7
+#max_obstacle_height: 0.4
+#min_obstacle_height: 0.1
 
 footprint: [[0.3, -0.35], [0.3, 0.35], [-0.34, 0.27], [-0.34, -0.27]]
 #robot_radius: 0.45 # ir_of_robot
@@ -19,11 +19,24 @@ footprint: [[0.3, -0.35], [0.3, 0.35], [-0.34, 0.27], [-0.34, -0.27]]
 
 obstacles:
   observation_sources: point_cloud2_sensor
-  point_cloud2_sensor: {sensor_frame: base_zed, data_type: PointCloud2, topic: zed2/zed_node/point_cloud/cloud_registered, marking: true, clearing: true, max_obstacle_height: 1.0, min_obstacle_height: 0.7}
+  point_cloud2_sensor: {sensor_frame: base_zed, data_type: PointCloud2, topic: zed2/zed_node/point_cloud/cloud_registered, marking: true, clearing: true, max_obstacle_height: 0.4, min_obstacle_height: 0.1}
 
-# obstacle_layer: {enabled: true, lethal_cost_threshold: 100, track_unknown_space: true, unknown_cost_value: -1} # Added without test
+#obstacle_layer: {enabled: true, lethal_cost_threshold: 100, track_unknown_space: true, unknown_cost_value: -1} # Added without test
+
+obstacle_layer: {track_unknown_space: true} # Added without test
+
+obstacle:
+  mark_threshold: 2
 
 inflation_layer:
   enabled:            true  # true
   cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
   inflation_radius:     1.7  # max. distance from an obstacle at which costs are incurred for planning paths.
+  
+recovery_behaviors: [
+  #{name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery}, 
+  {name: rotate_recovery, type: rotate_recovery/RotateRecovery} 
+  #, {name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery}
+]
+
+mark_threshold: 1

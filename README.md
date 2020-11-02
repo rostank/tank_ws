@@ -1,4 +1,4 @@
-\# Repository for the Tank
+# Repository for the Tank
 
 ## Important Commands
 
