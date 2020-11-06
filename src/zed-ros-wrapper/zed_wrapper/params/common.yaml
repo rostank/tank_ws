@@ -49,7 +49,7 @@ pos_tracking:
     map_frame:                  'map_zed'
     odometry_frame:             'odom_zed'
     area_memory_db_path:        ''
-    area_memory:                true                            # Enable to detect loop closure
+    area_memory:                false                            # Enable to detect loop closure
     floor_alignment:            false                           # Enable to automatically calculate camera/floor offset
     initial_base_pose:          [0.0,0.0,0.0, 0.0,0.0,0.0]      # Initial position of the `base_frame` -> [X, Y, Z, R, P, Y]
     init_odom_with_first_valid_pose: true                       # Enable to initialize the odometry with the first valid pose

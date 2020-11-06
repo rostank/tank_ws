@@ -3,45 +3,38 @@
 debug: 1                    # Range 0-4 (0 means no debug statements will print)
 
 save:
-  mask: 2048                # Save I/O, Message, INF Message, Nav, Receiver 
+  mask: 3103                # Save I/O, Message, INF Message, Nav, Receiver 
                             # Manager, Antenna, and Logging Configuration
   device: 4                 # Save to EEPROM
 
 device: /dev/ttyACM0
 frame_id: base_gps
-dynamic_model: pedestrian     # MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, MAX Vertical Velocity [m/s]: 20, Sanity check type: Altitude and Velocity, Max Position Deviation: Small
+dynamic_model: portable     # MAX Altitude [m]: 12000, MAX Velocity [m/s]: 310, MAX Vertical Velocity [m/s]: 50, Sanity check type: Altitude and Velocity, Max Position Deviation: Medium
 
 fix_mode: auto
-#dr_limit: 0
-enable_ppp: true
+dr_limit: 0
+enable_ppp: false
 
 rate: 10                     # Measurement rate in Hz
-nav_rate: 1                  # in number of measurement cycles
-
-save_on_shutdown: false
-clear_bbr: true
-
-usb:
-  in: 3
-  out: 3
+nav_rate: 10               # in number of measurement cycles
 
 uart1:
-  baudrate: 38400           
-  in: 32
-  out: 32
+  baudrate: 19200           
+  in: 0 
+  out: 3
 
 # TMODE3 Config
-# tmode3: 0                   # Survey-In Mode
-#sv_in:
-#  reset: false              # True: disables and re-enables survey-in (resets)
+tmode3: 1                   # Survey-In Mode
+sv_in:
+  reset: false              # True: disables and re-enables survey-in (resets)
                             # False: Disables survey-in only if TMODE3 is  
                             # disabled
-#  min_dur: 300              # Survey-In Minimum Duration [s]
-#  acc_lim: 3.0              # Survey-In Accuracy Limit [m]
+  min_dur: 300              # Survey-In Minimum Duration [s]
+  acc_lim: 3.0              # Survey-In Accuracy Limit [m]
 
 # RTCM out config
-#rtcm:
-#  ids: [5, 87, 77, 230]     # RTCM Messages to configure for Base station
+rtcm:
+  ids: [5, 87, 77, 230]     # RTCM Messages to configure for Base station
                                    # Enabled: GPS MSM7, GLONASS MSM7, 
                                    # GLONASS CP bias, Stationary RTK ref
                                    # 0xF5 0x05 Stationary RTK reference station
@@ -55,7 +48,7 @@ uart1:
                                    # 0xF5 0xE6 GLONASS code-phase biases
                                    # 0xF5 0xFE Reference station PVT 
                                    #(u-blox proprietary RTCM Message)
-#  rates: [1, 1, 1, 10]      # in number of navigation solutions, must match 
+  rates: [1, 1, 1, 10]      # in number of navigation solutions, must match 
                             # nav_rate, except for 0xE6
 
 dat:
@@ -63,35 +56,18 @@ dat:
 
 # GNSS Config
 gnss:
-  gps: true
   glonass: true  
   beidou: false
   qzss: false 
   galileo: true
-  sbas: true
-
-sbas:
-  max: 2
 
 inf: 
   all: true                   # Whether to display all INF messages in console
-
-nmea:
-  set: false
 
 # Enable u-blox message publishers
 publish:
   all: true
   aid:
-    all: false
+    hui: false
   nav:
     posecef: false
-    clock: false
-    pvt: false
-    sat: true
-    status: false
-    svinfo: false
-  rxm:
-    all: false
-  mon:
-    all: false

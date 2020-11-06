@@ -11,24 +11,24 @@ device: /dev/ttyACM0
 frame_id: base_gps
 dynamic_model: pedestrian     # MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, MAX Vertical Velocity [m/s]: 20, Sanity check type: Altitude and Velocity, Max Position Deviation: Small
 
-fix_mode: auto
+#fix_mode: auto
 #dr_limit: 0
 enable_ppp: true
 
-rate: 10                     # Measurement rate in Hz
+rate: 1                     # Measurement rate in Hz
 nav_rate: 1                  # in number of measurement cycles
 
-save_on_shutdown: false
+#save_on_shutdown: false
 clear_bbr: true
 
-usb:
-  in: 3
-  out: 3
+#usb:
+#  in: 3
+#  out: 3
 
-uart1:
-  baudrate: 38400           
-  in: 32
-  out: 32
+#uart1:
+#  baudrate: 38400           
+#  in: 3
+#  out: 3
 
 # TMODE3 Config
 # tmode3: 0                   # Survey-In Mode
@@ -58,40 +58,40 @@ uart1:
 #  rates: [1, 1, 1, 10]      # in number of navigation solutions, must match 
                             # nav_rate, except for 0xE6
 
-dat:
-  set: false
+#dat:
+#  set: false
 
 # GNSS Config
 gnss:
   gps: true
-  glonass: true  
-  beidou: false
-  qzss: false 
-  galileo: true
-  sbas: true
+#  glonass: true  
+#  beidou: false
+#  qzss: false 
+#  galileo: true
+#  sbas: true
 
-sbas:
-  max: 2
+#sbas:
+#  max: 2
 
-inf: 
-  all: true                   # Whether to display all INF messages in console
+#inf: 
+#  all: true                   # Whether to display all INF messages in console
 
-nmea:
-  set: false
+#nmea:
+#  set: false
 
 # Enable u-blox message publishers
-publish:
-  all: true
-  aid:
-    all: false
-  nav:
-    posecef: false
-    clock: false
-    pvt: false
-    sat: true
-    status: false
-    svinfo: false
-  rxm:
-    all: false
-  mon:
-    all: false
+#publish:
+#  all: true
+#  aid:
+#    all: false
+#  nav:
+#    posecef: false
+#    clock: false
+#    pvt: false
+#    sat: true
+#    status: false
+#    svinfo: false
+#  rxm:
+#    all: false
+#  mon:
+#    all: false

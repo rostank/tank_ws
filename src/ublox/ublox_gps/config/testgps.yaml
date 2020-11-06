@@ -12,10 +12,10 @@ frame_id: base_gps
 dynamic_model: pedestrian     # MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, MAX Vertical Velocity [m/s]: 20, Sanity check type: Altitude and Velocity, Max Position Deviation: Small
 
 fix_mode: auto
-#dr_limit: 0
+dr_limit: 0
 enable_ppp: true
 
-rate: 10                     # Measurement rate in Hz
+rate: 4                     # Measurement rate in Hz
 nav_rate: 1                  # in number of measurement cycles
 
 save_on_shutdown: false
@@ -26,9 +26,9 @@ usb:
   out: 3
 
 uart1:
-  baudrate: 38400           
-  in: 32
-  out: 32
+  baudrate: 19200           
+  in: 3
+  out: 3
 
 # TMODE3 Config
 # tmode3: 0                   # Survey-In Mode
