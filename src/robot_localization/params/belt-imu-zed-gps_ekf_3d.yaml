@@ -26,7 +26,7 @@ ekf_se_odom:
   odom0_relative: true
 
   odom1: zed2/zed_node/odom
-  odom1_config: [true, true, true,
+  odom1_config: [false, false, false,
                  true, true, true,
                  false, false, false,
                  false, false, false,
@@ -110,7 +110,7 @@ ekf_se_map:
   odom0_relative: true
 
   odom1: zed2/zed_node/odom
-  odom1_config: [true, true, true,
+  odom1_config: [false, false, false,
                  true, true, true,
                  false, false, false,
                  false, false, false,
@@ -134,16 +134,16 @@ ekf_se_map:
 #  pose0_rejection_threshold: 2
 #  pose0_nodelay: false
   
-#  odom2: odometry/gps
-#  odom2_config: [true,  true,  true,
-#                 false, false, false,
-#                 false, false, false,
-#                 false, false, false,
-#                 false, false, false]
-#  odom2_queue_size: 1
-#  odom2_nodelay: true
-#  odom2_differential: false
-#  odom2_relative: false
+  odom2: odometry/gps
+  odom2_config: [true,  true,  true,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false,
+                 false, false, false]
+  odom2_queue_size: 1
+  odom2_nodelay: true
+  odom2_differential: false
+  odom2_relative: false
 
   imu0: imu/data
   imu0_config: [false, false, false,
