@@ -9,3 +9,17 @@ TrajectoryPlannerROS:
   acc_lim_y: 0.0
 
   holonomic_robot: false
+  
+  # Trajectory simulation
+  meter_scoring: true # Default false
+  sim_time: 5.0
+  sim_granularity: 0.025 # Default 0.025
+  vx_samples: 3 # Default 3
+  vtheta_samples: 20 # Default 20
+  publish_cost_grid_pc: false # Default false
+  
+  # Goal tolerance
+  xy_goal_tolerance: 0.3
+  yaw_goal_tolerence: 0.2
+  
+

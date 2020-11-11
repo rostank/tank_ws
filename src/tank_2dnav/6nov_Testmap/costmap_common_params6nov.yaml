@@ -1,19 +1,15 @@
 plugins:
-#  - {name: static_map, type: "costmap_2d::StaticLayer"}
+  - {name: static_map, type: "costmap_2d::StaticLayer"}
   - {name: obstacles, type: "costmap_2d::VoxelLayer"}
   - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
 
-obstacle_range: 10.0
-raytrace_range: 12.0
-
-#max_obstacle_height: 0.4
-#min_obstacle_height: 0.1
+obstacle_range: 5.0
+raytrace_range: 7.0
 
 footprint: [[0.3, -0.35], [0.3, 0.35], [-0.34, 0.27], [-0.34, -0.27]]
 #robot_radius: 0.45 # ir_of_robot
 #inflation_radius: 0.2
 #robot_base_frame: base_zed
-
 
 # publish_voxel_map: true # Added without test
 
@@ -26,12 +22,12 @@ obstacles:
 obstacle_layer: {track_unknown_space: true} # Added without test
 
 obstacle:
-  mark_threshold: 2
+  mark_threshold: 1
 
 inflation_layer:
   enabled:            true  # true
-  cost_scaling_factor:  10.0  # exponential rate at which the obstacle cost drops off (default: 10)
-  inflation_radius:     1.7  # max. distance from an obstacle at which costs are incurred for planning paths.
+  cost_scaling_factor:  4.0  # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     2.0  # max. distance from an obstacle at which costs are incurred for planning paths (default: 0.55).
   
 #recovery_behaviors: [
   #{name: conservative_reset, type: clear_costmap_recovery/ClearCostmapRecovery}, 
@@ -39,4 +35,6 @@ inflation_layer:
   #, {name: aggressive_reset, type: clear_costmap_recovery/ClearCostmapRecovery}
 #]
 
-mark_threshold: 1
+#recovery_behavior_enabled: false
+
+#mark_threshold: 1

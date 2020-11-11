@@ -2,25 +2,40 @@
 
 
    <master auto="start"/>
- <!-- Run the map server 
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find my_map_package)/my_map.pgm my_map_resolution"/>
--->
+ <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/Map_size_15_res_005.yaml"/>
+
 
  <!--- Run AMCL  
     <include file="$(find amcl)/examples/amcl_diff.launch" />
 -->
 
-
+  <!-- TRANSFORMS -->
+  <node pkg="tf" type="static_transform_publisher" name="map_tf" args="-6 -6 0 0 0 0 1 map base_link 10" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="map_tf" args="2 -6 0 0 0 0.258819 0.9659258 map base_link 10" /> -->
+  <node pkg="tf" type="static_transform_publisher" name="zed_tf" args="0.205 0 0.209 0 0 0 1 base_link base_zed 10" />
+  
+  
+  <!--
+  <node pkg="tf" type="static_transform_publisher" name="imu_tf" args="0 0 0.1427 -0.007652281432812 0.003060912573125 0 0.999966036124774 base_link base_imu 10" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_tf" args="0.21 0 0 0 0 0 1 base_link base_enc 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_tf" args="0.205 0 0.209 0 0 0 1 base_link base_zed 10" />
+  <node pkg="tf" type="static_transform_publisher" name="enc_odom_tf" args="0.21 0 0 0 0 0 1 odom odom_enc 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_odom_tf" args="0.205 0 0.209 0 0 0 1 odom odom_zed 10" />
+  <node pkg="tf" type="static_transform_publisher" name="zed_map_tf" args="0.205 0 0.209 0 0 0 1 map map_zed 10" />
+  <node pkg="tf" type="static_transform_publisher" name="gps_tf" args="0.135 0 0.155 0 0 0 1 base_link base_gps 100" />
+-->
 
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find tank_2dnav)/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find tank_2dnav)/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find tank_2dnav)/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find tank_2dnav)/global_costmap_params.yaml" command="load" /> 
-    <rosparam file="$(find tank_2dnav)/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/costmap_common_params6nov.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/costmap_common_params6nov.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/local_costmap_params6nov.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/global_costmap_params6nov.yaml" command="load" /> 
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/base_local_planner_params6nov.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/6nov_Testmap/global_planner_params6nov.yaml" command="load" />
     <param name="base_global_planner" type="string" value=" global_planner/GlobalPlanner" />
+    <param name="recovery_behavior_enabled" type="bool" value="false" />
     <param name="controller_frequency" type="double" value="10.0" />
-    <param name="GlobalPlanner/visualize_potential" value="true" />
  </node>
 
 </launch>
