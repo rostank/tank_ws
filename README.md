@@ -74,8 +74,16 @@ roslaunch robot_localization ekf_double.launch
 
 ### Launch Sensor drive 
 cd ~/tank_ws/launch
+
 roslaunch sensor_drive.launch
 
 #### Copy over ssh:
 scp tank@10.122.12.106:/home/tank/tank_ws/sensorbags/sensorbags.zip ~/Downloads
+
 scp ~/Downloads/sensorbags.zip rostank@10.25.6.25:~/tank_ws/sensorbag
+
+
+### Visualization
+Tomtom:
+https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?tileSize=512&key=S7FOifl6AGAQlYLoR3GmDBzLMelDrCe7
+
