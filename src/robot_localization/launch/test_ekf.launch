@@ -12,7 +12,7 @@
 
 <launch>
 
-  <rosparam command="load" file="$(find robot_localization)/params/belt-imu-zed_ekf_3d.yaml" />
+  <rosparam command="load" file="$(find robot_localization)/params/belt-imu-zed-gps_ekf_3d.yaml" />
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true"/>
 
@@ -24,7 +24,7 @@
     <remap from="odometry/filtered" to="odometry/filtered_map"/>
   </node>
   
- 
+  <!--
   <node pkg="tf" type="static_transform_publisher" name="gps_tf" args="0.135 0 0.155 0 0 0 1 base_link gps 100" />
- 
+  -->
 </launch>
