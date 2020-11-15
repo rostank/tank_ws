@@ -50,9 +50,9 @@ def StdDataHandler():
     msg.linear_acceleration.y = (imu.get_all_data().linear_acceleration[1]/100.0)-aveoffset.y
     msg.linear_acceleration.z = (imu.get_all_data().linear_acceleration[2]/100.0)-aveoffset.z
 
-    msg.angular_velocity.x = imu.get_all_data().angular_velocity[0]/16
-    msg.angular_velocity.y = imu.get_all_data().angular_velocity[1]/16
-    msg.angular_velocity.z = imu.get_all_data().angular_velocity[2]/16
+    msg.angular_velocity.x = imu.get_all_data().angular_velocity[0]/916.73247221
+    msg.angular_velocity.y = imu.get_all_data().angular_velocity[1]/916.73247221
+    msg.angular_velocity.z = imu.get_all_data().angular_velocity[2]/916.73247221
 
     #msg.linear_acceleration.x = imu.get_all_data().acceleration[0]/100.0
     #msg.linear_acceleration.y = imu.get_all_data().acceleration[1]/100.0
