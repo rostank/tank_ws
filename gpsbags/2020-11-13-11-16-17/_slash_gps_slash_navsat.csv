@@ -1,0 +1,4 @@
+rosbagTimestamp,iTOW,version,numSvs,reserved0,sv,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags,-,gnssId,svId,cno,elev,azim,prRes,flags
+1605262598629164595,469016600,1,8,"[0, 0]",,0,2,26,-91,0,0,4,0,3,32,-91,0,0,6,0,4,32,-91,0,0,6,0,9,32,-91,0,0,6,0,31,31,-91,0,0,6,6,5,41,-91,0,0,2067,6,255,40,-91,0,0,3,6,255,36,-91,0,0,3
+1605262600630944578,469018600,1,8,"[0, 0]",,0,2,26,-91,0,0,4,0,3,32,-91,0,0,6,0,4,31,-91,0,0,6,0,9,32,-91,0,0,6,0,31,31,-91,0,0,6,6,5,41,-91,0,0,2327,6,255,40,-91,0,0,3,6,255,36,-91,0,0,3
+1605262602633587070,469020600,1,8,"[0, 0]",,0,2,26,-91,0,0,4,0,3,32,-91,0,0,6,0,4,32,-91,0,0,6,0,9,32,-91,0,0,4630,0,31,31,-91,0,0,6,6,5,41,-91,0,0,2327,6,255,40,-91,0,0,3,6,255,36,-91,0,0,3
