@@ -3,8 +3,8 @@
 
    <master auto="start"/>
  <!-- Run the map server -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/Map_size_15_res_005.yaml"/>
-
+    <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/Map_size_15_res_005.yaml"/> -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find map_server)/Map_obstacle.yaml"/>
 
  <!--- Run AMCL  
     <include file="$(find amcl)/examples/amcl_diff.launch" />

@@ -107,9 +107,13 @@ def MagDataHandler():
     msg.header.stamp = rospy.get_rostime()
     msg.header.frame_id = "base_imu"
     
-    msg.magnetic_field.x = imu.get_all_data().magnetic_field[0]/16.0
-    msg.magnetic_field.y = imu.get_all_data().magnetic_field[1]/16.0
-    msg.magnetic_field.z = imu.get_all_data().magnetic_field[2]/16.0
+#    msg.magnetic_field.x = imu.get_all_data().magnetic_field[0]/16.0
+#    msg.magnetic_field.y = imu.get_all_data().magnetic_field[1]/16.0
+#    msg.magnetic_field.z = imu.get_all_data().magnetic_field[2]/16.0
+
+    msg.magnetic_field.x = imu.get_all_data().euler_angle[0]/16.0
+    msg.magnetic_field.y = imu.get_all_data().euler_angle[1]/16.0
+    msg.magnetic_field.z = imu.get_all_data().euler_angle[2]/16.0
 
     msg.magnetic_field_covariance = [0.002,0.,0.,0.,0.002,0.,0.,0.,0.002,]
 
