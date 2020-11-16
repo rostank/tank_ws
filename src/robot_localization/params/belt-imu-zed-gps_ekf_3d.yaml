@@ -194,7 +194,7 @@ ekf_se_map:
 navsat_transform:
   frequency: 1
   delay: 0.0
-  magnetic_declination_radians: 0.5236 #0.06196  # For lat/long 55.944831, -3.186998
+  magnetic_declination_radians: 0.0681 # 0.5236 #0.06196  # For lat/long 55.944831, -3.186998
   yaw_offset: 0 # 0.175 # 0.8912746 #2.67  # IMU reads 0 facing magnetic north, not east
   zero_altitude: false
   broadcast_cartesian_transform: true
