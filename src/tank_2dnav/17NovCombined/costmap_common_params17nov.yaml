@@ -1,0 +1,35 @@
+robot_base_frame: base_link
+
+# ---- Detect obstacles
+obstacle_range: 5.0
+raytrace_range: 7.0
+
+# ---- Footprint
+footprint: [[0.3, -0.35], [0.3, 0.35], [-0.34, 0.27], [-0.34, -0.27]]
+# footprint_padding: 0
+
+
+# transform_tolerance: 5 # Added without testing
+
+
+# ---- Mapping
+map_type: costmap
+publish_voxel_map: true # Added without test
+
+obstacles:
+  observation_sources: point_cloud2_sensor
+  point_cloud2_sensor: {sensor_frame: base_zed, data_type: PointCloud2, topic: zed2/zed_node/point_cloud/cloud_registered, marking: true, clearing: true, max_obstacle_height: 0.4, min_obstacle_height: 0.1}
+
+obstacle_layer: {track_unknown_space: true} # Added without test
+  
+inflation_layer:
+  enabled:              true
+  cost_scaling_factor:  4.0  # exponential rate at which the obstacle cost drops off (default: 10)
+  inflation_radius:     2.0  # max. distance from an obstacle at which costs are incurred for planning paths (default: 0.55).
+
+# ---- Voxel layer parameters
+# origin_z:
+# z_resolution:
+# z_voxels:
+# unknown threshold:
+mark threshold: 2

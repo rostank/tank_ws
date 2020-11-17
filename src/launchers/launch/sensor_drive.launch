@@ -32,6 +32,6 @@
   <node name="imu" pkg="imutfb" type="imumag.py" />
 
   <!-- SENSOR FUSION -->
-  <include file="$(find robot_localization)/launch/dual_ekf_2d.launch" />
+  <include file="$(find robot_localization)/launch/dual_ekf_3d.launch" />
 
 </launch> 

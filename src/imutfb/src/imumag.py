@@ -147,7 +147,7 @@ def talker():
     pub3 = rospy.Publisher('imu/temperature', Temperature, queue_size=1)
     pub4 = rospy.Publisher('imu/gravity', MagneticField, queue_size=1)
     pub5 = rospy.Publisher('imu/acceleration', Imu, queue_size=1)
-    r = rospy.Rate(20)  #10hz
+    r = rospy.Rate(20)  #20hz
     
     msg = imu_message()
 
