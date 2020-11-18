@@ -1,20 +1,25 @@
+plugins:
+  - {name: obstacles, type: "costmap_2d::VoxelLayer"}
+  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
 robot_base_frame: base_link
 
-# ---- Detect obstacles
-obstacle_range: 5.0
-raytrace_range: 7.0
 
 # ---- Footprint
 footprint: [[0.3, -0.35], [0.3, 0.35], [-0.34, 0.27], [-0.34, -0.27]]
-# footprint_padding: 0
+footprint_padding: 0.1
 
 
 # transform_tolerance: 5 # Added without testing
 
 
 # ---- Mapping
-map_type: costmap
+#map_type: costmap
 publish_voxel_map: true # Added without test
+
+# ---- Detect obstacles
+obstacle_range: 5.0
+raytrace_range: 7.0
 
 obstacles:
   observation_sources: point_cloud2_sensor

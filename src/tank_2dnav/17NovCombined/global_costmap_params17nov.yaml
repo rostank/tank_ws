@@ -1,6 +1,6 @@
 global_costmap:
   global_frame: map
-  robot_base_frame: base_link
+#  robot_base_frame: base_link
   update_frequency: 4.0
 #  publish_frequency: 
   rolling_window: true
@@ -8,6 +8,4 @@ global_costmap:
   height: 40.0
   resolution: 0.05
   
-plugins:
-  - {name: obstacles, type: "costmap_2d::VoxelLayer"}
-  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+

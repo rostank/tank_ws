@@ -76,7 +76,7 @@ class DiffTf:
         
         #### parameters #######
         self.rate = rospy.get_param('~rate',20.0)  # the rate at which to publish the transform
-        self.ticks_meter = float(rospy.get_param('ticks_meter', 770))  # The number of wheel encoder ticks per meter of travel
+        self.ticks_meter = float(rospy.get_param('ticks_meter', 770.26))  # The number of wheel encoder ticks per meter of travel
         self.base_width = float(rospy.get_param('~base_width', 0.47)) # The wheel base width in meters
         
         self.base_frame_id = rospy.get_param('~base_frame_id','base_enc') # the name of the base frame of the robot
@@ -170,8 +170,8 @@ class DiffTf:
                 0, 0, 0, 0, 0, 1e-6])
             else:
                 covOdom = \
-                ([5e-6*d, 0, 0, 0, 0, 0,\
-                0, 5e-6*d, 0, 0, 0, 0,\
+                ([5e-5*d, 0, 0, 0, 0, 0,\
+                0, 5e-5*d, 0, 0, 0, 0,\
                 0, 0, 1e+6, 0, 0, 0,\
                 0, 0, 0, 1e+6, 0, 0,\
                 0, 0, 0, 0, 1e+6, 0,\
@@ -179,16 +179,16 @@ class DiffTf:
                 
             if (self.dx == 0):
                 covTwist = \
-                ([1e-9, 0, 0, 0, 0, 0,\
-                0, 1e-9, 0, 0, 0, 0,\
-                0, 0, 1e-9, 0, 0, 0,\
-                0, 0, 0, 1e-9, 0, 0,\
-                0, 0, 0, 0, 1e-9, 0,\
-                0, 0, 0, 0, 0, 1e-9])
+                ([1e-7, 0, 0, 0, 0, 0,\
+                0, 1e-7, 0, 0, 0, 0,\
+                0, 0, 1e-7, 0, 0, 0,\
+                0, 0, 0, 1e-7, 0, 0,\
+                0, 0, 0, 0, 1e-7, 0,\
+                0, 0, 0, 0, 0, 1e-7])
             else:
                 covTwist = \
-                ([(1e-6)*self.dx, 0, 0, 0, 0, 0,\
-                0, (1e-7), 0, 0, 0, 0,\
+                ([(5e-5)*self.dx, 0, 0, 0, 0, 0,\
+                0, (5e-5)*self.dx, 0, 0, 0, 0,\
                 0, 0, 1e+6, 0, 0, 0,\
                 0, 0, 0, 1e+6, 0, 0,\
                 0, 0, 0, 0, 1e+6, 0,\

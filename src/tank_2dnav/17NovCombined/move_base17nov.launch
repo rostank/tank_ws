@@ -8,11 +8,10 @@
     <rosparam file="$(find tank_2dnav)/17NovCombined/costmap_common_params17nov.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find tank_2dnav)/17NovCombined/local_costmap_params17nov.yaml" command="load" />
     <rosparam file="$(find tank_2dnav)/17NovCombined/global_costmap_params17nov.yaml" command="load" /> 
-    <rosparam file="$(find tank_2dnav)/6nov_Testmap/base_local_planner_params6nov.yaml" command="load" />
-    <rosparam file="$(find tank_2dnav)/6nov_Testmap/global_planner_params6nov.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/17NovCombined/base_local_planner_params17nov.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/17NovCombined/global_planner_params17nov.yaml" command="load" />
     <param name="base_global_planner" type="string" value=" global_planner/GlobalPlanner" />
     <param name="recovery_behavior_enabled" type="bool" value="false" />
-    <param name="controller_frequency" type="double" value="10.0" />
  </node>
 
 </launch>

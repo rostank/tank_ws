@@ -6,7 +6,7 @@ ekf_se_odom:
   two_d_mode: false
   transform_time_offset: 0.05
   transform_timeout: 0.1
-  print_diagnostics: true
+  print_diagnostics: false
   debug: false
 
   map_frame: map
@@ -192,7 +192,7 @@ ekf_se_map:
                                 0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
 
 navsat_transform:
-  frequency: 1
+  frequency: 10
   delay: 0.0
   magnetic_declination_radians: 0.0681 # 0.5236 #0.06196  # For lat/long 55.944831, -3.186998
   yaw_offset: 0 # 0.175 # 0.8912746 #2.67  # IMU reads 0 facing magnetic north, not east
