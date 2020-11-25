@@ -12,10 +12,8 @@
 
 <launch>
 
-  <rosparam command="load" file="$(find robot_localization)/params/belt-imu-zed-gps_ekf_3d.yaml" />
-  <!--
-  <rosparam param="datum">[56, 10, 0.0, map, base_link]</rosparam>
-  -->
+  <rosparam command="load" file="$(find robot_localization)/params/dual_ekf_2d.yaml" />
+
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true"/>
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_map" clear_params="true">
