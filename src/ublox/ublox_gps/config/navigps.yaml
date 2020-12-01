@@ -13,7 +13,7 @@ dynamic_model: pedestrian     # MAX Altitude [m]: 9000, MAX Velocity [m/s]: 30, 
 
 fix_mode: auto
 #dr_limit: 0
-enable_ppp: true
+enable_ppp: false
 
 rate: 10                     # Measurement rate in Hz
 nav_rate: 1                  # in number of measurement cycles

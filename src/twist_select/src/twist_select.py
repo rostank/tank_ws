@@ -14,7 +14,8 @@ def callback_au(data):
      
      if au_priority_msg == True:
         if timer_count < 2:
-     	   pub.publish(data)
+           data.angular.z = data.angular.z*1.45
+           pub.publish(data)
      
 def callback_joy(data):
      global au_priority_msg

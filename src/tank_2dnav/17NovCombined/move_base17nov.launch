@@ -12,6 +12,8 @@
     <rosparam file="$(find tank_2dnav)/17NovCombined/global_planner_params17nov.yaml" command="load" />
     <param name="base_global_planner" type="string" value=" global_planner/GlobalPlanner" />
     <param name="recovery_behavior_enabled" type="bool" value="false" />
+    <param name="controller_frequency" type="double" value="10" />
+    <param name="planner_frequency" type="double" value="0.5" />
  </node>
 
 </launch>

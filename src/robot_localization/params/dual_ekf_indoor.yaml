@@ -1,4 +1,3 @@
- 
 # For parameter descriptions, please refer to the template parameter files for each node.
 
 ekf_se_odom:
@@ -7,7 +6,7 @@ ekf_se_odom:
   two_d_mode: true
   transform_time_offset: 0.05
   transform_timeout: 0
-  print_diagnostics: true
+  print_diagnostics: false
   debug: false
 
   map_frame: map
@@ -22,12 +21,12 @@ ekf_se_odom:
                  false, false, true,
                  false, false, false]
   odom0_queue_size: 2
-  odom0_nodelay: true
+  odom0_nodelay: false
   odom0_differential: false
-  odom0_relative: false
+  odom0_relative: true
 
   odom1: zed2/zed_node/odom
-  odom1_config: [true, true, true,
+  odom1_config: [true, true, false,
                  true, true, true,
                  false, false, false,
                  false, false, false,
@@ -37,18 +36,18 @@ ekf_se_odom:
   odom1_queue_size: 2
 #  odom1_pose_rejection_threshold: 2
 #  odom1_twist_rejection_threshold: 0.2
-  odom1_nodelay: false
+  odom1_nodelay: true
 
   imu0: imu/data
   imu0_config: [false, false, false,
                 true,  true,  true,
                 false, false, false,
-                true, true, true,
-                false, false,  false]
-  imu0_nodelay: false
+                false,  false,  false,
+                false,  false,  false]
+  imu0_nodelay: true
   imu0_differential: false
   imu0_relative: false
-  imu0_queue_size: 6
+  imu0_queue_size: 5
   imu0_remove_gravitational_acceleration: false
 
   use_control: false
@@ -106,9 +105,9 @@ ekf_se_map:
                  false, false, true,
                  false, false, false]
   odom0_queue_size: 2
-  odom0_nodelay: true
+  odom0_nodelay: false
   odom0_differential: false
-  odom0_relative: false
+  odom0_relative: true
 
   odom1: zed2/zed_node/odom
   odom1_config: [true, true, true,
@@ -121,7 +120,7 @@ ekf_se_map:
   odom1_queue_size: 2
 #  odom1_pose_rejection_threshold: 2
 #  odom1_twist_rejection_threshold: 0.2
-  odom1_nodelay: false
+  odom1_nodelay: true
   
 #  pose0: zed2/zed_node/pose_with_covariance
 #  pose0_config: [true, true, true,
@@ -135,27 +134,27 @@ ekf_se_map:
 #  pose0_rejection_threshold: 2
 #  pose0_nodelay: false
   
-  odom2: odometry/gps
-  odom2_config: [true,  true,  true,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false]
-  odom2_queue_size: 2
-  odom2_nodelay: false
-  odom2_differential: false
-  odom2_relative: false
+#  odom2: odometry/gps
+#  odom2_config: [true,  true,  true,
+#                 false, false, false,
+#                 false, false, false,
+#                 false, false, false,
+#                 false, false, false]
+#  odom2_queue_size: 1
+#  odom2_nodelay: true
+#  odom2_differential: false
+#  odom2_relative: false
 
   imu0: imu/data
   imu0_config: [false, false, false,
                 true,  true,  true,
                 false, false, false,
-                true,  true,  true,
-                false, false, false]
-  imu0_nodelay: false
+                false, false,  false,
+                false,  false, false]
+  imu0_nodelay: true
   imu0_differential: false
   imu0_relative: false
-  imu0_queue_size: 6
+  imu0_queue_size: 5
   imu0_remove_gravitational_acceleration: false
 
   use_control: false
@@ -193,15 +192,14 @@ ekf_se_map:
                                 0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1.0]
 
 navsat_transform:
-  frequency: 10
+  frequency: 5
   delay: 0.0
-  magnetic_declination_radians: 0.06225 # 0.0681 # 0.5236 #0.06196  # For lat/long 55.944831, -3.186998
+  magnetic_declination_radians: 0.0681 # 0.5236 #0.06196  # For lat/long 55.944831, -3.186998
   yaw_offset: 0 # 0.175 # 0.8912746 #2.67  # IMU reads 0 facing magnetic north, not east
   zero_altitude: false
   broadcast_cartesian_transform: true
-  broadcast_cartesian_transform_as_parent_frame: true
   publish_filtered_gps: true
   use_odometry_yaw: false
   wait_for_datum: false
-#  broadcast_utm_transform: true
+
 

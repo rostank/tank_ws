@@ -1,0 +1,7 @@
+<launch>
+    <!-- Launch pcl_handler -->
+    <node ns="Tracker" name="CloudImage" pkg="pcl_handler" type="cloudsubscribertimer"/> 
+    
+    <!-- Launch Segmentation -->
+    <node ns="Tracker" name="Segmentation" pkg="segmentation" type="DBSCAN.py"/>
+</launch>
