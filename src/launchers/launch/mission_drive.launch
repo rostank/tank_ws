@@ -2,7 +2,8 @@
 
   <include file="$(find launchers)/launch/sensor_drive.launch" />
 
-  <!-- Navigation 
-  <include file="$(find robot_localization)/launch/dual_ekf_2d.launch" />
-  -->
+  <include file="$(find launchers)/launch/rtab.launch" />
+
+  <include file="$(find tank_2dnav)/16Dec/move_base16dec.launch" />
+
 </launch> 

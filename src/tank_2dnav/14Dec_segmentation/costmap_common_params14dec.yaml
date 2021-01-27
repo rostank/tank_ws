@@ -22,8 +22,9 @@ obstacle_range: 9.0
 raytrace_range: 15.0
 
 obstacles:
-  observation_sources: point_cloud2_sensor
-  point_cloud2_sensor: {sensor_frame: base_link, data_type: PointCloud2, topic: obstacles_cloud, marking: true, clearing: true, max_obstacle_height: 0.5, min_obstacle_height: 0.01}
+  observation_sources: point_cloud2_sensorMark point_cloud2_sensorClear
+  point_cloud2_sensorMark: {sensor_frame: base_link, data_type: PointCloud2, topic: obstacles_cloud, marking: true, clearing: false}
+  point_cloud2_sensorClear: {sensor_frame: base_zed, data_type: PointCloud2, topic: zed2/zed_node/point_cloud/cloud_registered, marking: false, clearing: true}
 
 obstacle_layer: {track_unknown_space: true} # Added without test
   
@@ -37,5 +38,5 @@ origin_z: 0.1
 z_resolution: 0.03
 z_voxels: 10
 # unknown threshold:
-mark_threshold: 6
+mark_threshold: 4
 publish_voxel_map: false

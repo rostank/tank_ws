@@ -1,0 +1,20 @@
+<launch>
+
+
+   <master auto="start"/>
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <remap from="/odom"     to="/odometry/filtered"/> 
+    <rosparam file="$(find tank_2dnav)/16Dec/costmap_common_params16dec.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find tank_2dnav)/16Dec/costmap_common_params16dec.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find tank_2dnav)/16Dec/local_costmap_params16dec.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/16Dec/global_costmap_params16dec.yaml" command="load" /> 
+    <rosparam file="$(find tank_2dnav)/16Dec/base_local_planner_params16dec.yaml" command="load" />
+    <rosparam file="$(find tank_2dnav)/16Dec/global_planner_params16dec.yaml" command="load" />
+    <param name="base_global_planner" type="string" value=" global_planner/GlobalPlanner" />
+    <param name="recovery_behavior_enabled" type="bool" value="false" />
+    <param name="controller_frequency" type="double" value="10" />
+    <param name="planner_frequency" type="double" value="0.5" />
+ </node>
+
+</launch>
